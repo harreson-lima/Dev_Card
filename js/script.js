@@ -1,26 +1,45 @@
-const imageEle = document.getElementById("image");
-const nameEle = document.getElementById("name");
+const inputEle = document.getElementById("user-input");
+const searchBtnEle = document.getElementById("btn-search");
 
-const user = fetch("https://api.github.com/users/harreson-lima/events", {
-  headers: {
-    "X-GitHub-Api-Version": "2022-11-28",
-  },
-})
-.then(data => data.json())
-.then(values => {
-  console.log(values)
-  nameEle.innerHTML = values.name;
-  imageEle.src = values.avatar_url;
-})
+const imageEle = document.getElementById("image");
+const nameEle = document.querySelector(".name");
+const bioEle = document.querySelector(".bio");
+const followersEle = document.getElementById("followers");
+const followingEle = document.getElementById("following");
+const locationEle = document.querySelector(".location");
+
+searchBtnEle.addEventListener("click", getUser);
+
+function getUser() {
+  if (inputEle.value !== "") {
+    const user = fetch(`https://api.github.com/users/${inputEle.value}`, {
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    })
+      .then((data) => data.json())
+      .then((values) => {
+        console.log(values);
+        imageEle.src = values.avatar_url;
+        nameEle.innerHTML = values.name;
+        bioEle.innerHTML = values.bio;
+        followersEle.innerHTML = `<div>${values.followers}</div><div>Followers</div>`;
+        followingEle.innerHTML = `<div>${values.following}</div><div>Following</div>`;
+        locationEle.innerHTML =
+          `<span class="material-symbols-outlined">
+location_on
+</span> ` + values.location;
+      });
+  } else {
+    alert("Please, insert a user name");
+  }
+}
 
 /*
-  name; String
-  avatar_url; String
-  bio; String
-  followers; Number
-  hireable; Boolena
-  location; String
-  html_url; String
-  repos_url;
-  chart: https://ghchart.rshah.org/"user"
+  name; String -
+  avatar_url; String-
+  bio; String-
+  followers; Number-
+  location; String-
+  html_url; String-
 */

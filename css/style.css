@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
 :root {
-  --first-bg-clr: #42545;
-  --second-bg-clr: #42545;
+  --first-bg-clr: #29323C;
+  --second-bg-clr: #485563;
+  --primary-text-clr: #FAFAFA;
 }
 
 * {
@@ -14,5 +15,61 @@
 
 body {
   height: 100svh;
-  background: linear-gradient(to bottom, );
+  background: linear-gradient(to bottom, var(--first-bg-clr) 45%, var(--second-bg-clr) 100%);
+  color: var(--primary-text-clr);
+}
+
+.header {
+  align-self: flex-start;
+  width: 100%;
+  padding: 2em 3em;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  width: clamp(300px, 30%, 400px);
+  background-color: #001644;
+  padding: 3em 1.5em;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+#image {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+
+.follows {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  padding: 1em 0;
+}
+
+.follows-item {
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chart {
+  width: 100%;
 }
