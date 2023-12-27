@@ -6,16 +6,18 @@
   <title>Dev Card</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <script src="https://kit.fontawesome.com/323c990d78.js" crossorigin="anonymous"></script>
   <script src="js/script.js" defer></script>
 </head>
 <body>
   <div class="header">
-    <h1>Dev Card</h1>
-    <input type="text" id="user-input" name="user-input" placeholder="User name">
-    <button id="btn-search">Search</button>
+    <h1 class="title">Dev Card</h1>
+    <div class="search">
+      <input type="text" id="user-input" name="user-input" placeholder="User name">
+      <button id="btn-search">Search</button>
+    </div>
   </div>
 
-  <main class="container">
     <div class="card">
       <img src="#" alt="" id="image">
       <div class="name"></div>
@@ -25,8 +27,7 @@
         <div class="follows-item" id="following"></div>
       </div>
       <div class="location"> </div>
-      <a href="#" class="repos" target="_blank">Github</a>
+      <a href="#" class="repos" target="_blank"><i class="fa-brands fa-github"></i> Github</a>
     </div>
-  </main>
 </body>
 </html>

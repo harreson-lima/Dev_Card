@@ -7,6 +7,7 @@ const bioEle = document.querySelector(".bio");
 const followersEle = document.getElementById("followers");
 const followingEle = document.getElementById("following");
 const locationEle = document.querySelector(".location");
+const linkEle = document.querySelector(".repos");
 
 searchBtnEle.addEventListener("click", getUser);
 
@@ -19,7 +20,7 @@ function getUser() {
     })
       .then((data) => data.json())
       .then((values) => {
-        console.log(values);
+        document.querySelector(".card").style = "display: flex";
         imageEle.src = values.avatar_url;
         nameEle.innerHTML = values.name;
         bioEle.innerHTML = values.bio;
@@ -29,6 +30,7 @@ function getUser() {
           `<span class="material-symbols-outlined">
 location_on
 </span> ` + values.location;
+        linkEle.href = values.html_url;
       });
   } else {
     alert("Please, insert a user name");
