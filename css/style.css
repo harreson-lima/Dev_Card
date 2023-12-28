@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
 :root {
-  --first-bg-clr: #29323C;
+  --first-bg-clr: #353f4b;
   --second-bg-clr: #485563;
   --primary-text-clr: #FAFAFA;
+  --primary-clr: #ee4444;
+  --secondary-clr: #334dbe;
+  --gradient-clr: #fba22d;
 }
 
 * {
@@ -15,7 +18,7 @@
 
 body {
   min-height: 100svh;
-  padding: 1.5em 2em;
+  padding: 1em 2em;
   background: linear-gradient(to bottom, var(--first-bg-clr) 45%, var(--second-bg-clr) 100%);
   color: var(--primary-text-clr);
   display: flex;
@@ -24,11 +27,43 @@ body {
 }
 
 .header {
-  width: 100%;
-  padding: 2em 3em;
+  max-width: 70%;
+  padding: 2em 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.title {
+  font-size: 2.4rem;
+  text-align: center;
+  text-shadow: 2px 3px 5px rgba(0,0,0,0.5);
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin: 1.9rem 0;
+}
+
+.username {
+  padding: 0.5em 1.2em;
+  font-size: 1.1rem; 
+  border-radius: 50px 0 0 50px;
+  border: none;
+}
+
+.search-btn {
+  font-size: 1rem;
+  text-align: center;
+  color: #F2F2F2;
+  background-color: var(--secondary-clr);
+  padding: 0.8em 1em;
+  border: none;
+  border-radius: 0 50px 50px 0;
+  cursor: pointer;
 }
 
 .card {
@@ -42,8 +77,8 @@ body {
   border: 5px solid transparent;
   border-radius: 13px;
   background: linear-gradient(#232323,#232323) padding-box, 
-  linear-gradient(125deg, #334dbe 15%,#ee4444 50%, 
-  #fba22d 80%,#fba22d 100%) border-box;
+  linear-gradient(125deg, var(--secondary-clr) 15%,var(--primary-clr) 50%, 
+  var(--gradient-clr) 80%,var(--gradient-clr) 100%) border-box;
 }
 
 #image {
@@ -52,12 +87,14 @@ body {
 }
 
 .name {
+  text-align: center;
   font-size: 2rem;
   font-weight: 700;
 }
 
-.bio {
+.bio{
   font-size: 1.1rem;
+  text-align: center;
 }
 
 .follows {
@@ -78,6 +115,11 @@ body {
   justify-content: space-between;
 }
 
+.repos {
+  font-size: 1.1rem;
+  margin: 0.5em 0 1em;
+}
+
 .location {
   display: flex;
   flex-wrap: nowrap;
@@ -85,12 +127,12 @@ body {
 }
 
 .material-symbols-outlined {
-  color: #ee4444;
+  color: var(--primary-clr);
   margin-bottom: 1em;
 }
 
-.repos {
-  color: #ee4444;
+.link {
+  color: var(--primary-clr);
   text-decoration: none;
   text-align: center;
   letter-spacing: 1px;
@@ -98,21 +140,31 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   border-radius: 7px;
-  border: 2px solid #ee4444;
+  border: 2px solid var(--primary-clr);
   padding: 0.5em 1em;
   transition: background-color 0.3s;
 }
 
-.repos .fa-github {
+.link .fa-github {
   font-size: 1.5rem;
 }
 
-.repos:hover {
-  background-color: #ee4444;
+.link:hover {
+  background-color: var(--primary-clr);
   color:#F2F2F2;
 }
 
-.repos:active {
+.link:active {
   background-color: #ee4444AA;
   border-color: #ee444422;
+}
+
+@media screen and (max-width: 900px){
+  .header {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 1.5rem
+  }
 }

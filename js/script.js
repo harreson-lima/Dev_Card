@@ -1,5 +1,8 @@
+const URL = "https://api.github.com/users/";
+
 const inputEle = document.getElementById("user-input");
 const searchBtnEle = document.getElementById("btn-search");
+searchBtnEle.addEventListener("click", getUser);
 
 const imageEle = document.getElementById("image");
 const nameEle = document.querySelector(".name");
@@ -7,41 +10,41 @@ const bioEle = document.querySelector(".bio");
 const followersEle = document.getElementById("followers");
 const followingEle = document.getElementById("following");
 const locationEle = document.querySelector(".location");
-const linkEle = document.querySelector(".repos");
-
-searchBtnEle.addEventListener("click", getUser);
+const reposEle = document.querySelector(".repos");
+const linkEle = document.querySelector(".link");
 
 function getUser() {
   if (inputEle.value !== "") {
-    const user = fetch(`https://api.github.com/users/${inputEle.value}`, {
+    const user = fetch(URL + inputEle.value, {
       headers: {
         "X-GitHub-Api-Version": "2022-11-28",
       },
     })
       .then((data) => data.json())
       .then((values) => {
-        document.querySelector(".card").style = "display: flex";
-        imageEle.src = values.avatar_url;
-        nameEle.innerHTML = values.name;
-        bioEle.innerHTML = values.bio;
-        followersEle.innerHTML = `<div>${values.followers}</div><div>Followers</div>`;
-        followingEle.innerHTML = `<div>${values.following}</div><div>Following</div>`;
-        locationEle.innerHTML =
-          `<span class="material-symbols-outlined">
-location_on
-</span> ` + values.location;
-        linkEle.href = values.html_url;
+        if (values.message === "Not Found") {
+          document.querySelector(".card").style = "display: none";
+          alert("Please, insert a valid user name");
+        } else {
+          createCard(values);
+        }
       });
   } else {
     alert("Please, insert a user name");
   }
 }
 
-/*
-  name; String -
-  avatar_url; String-
-  bio; String-
-  followers; Number-
-  location; String-
-  html_url; String-
-*/
+function createCard(user) {
+  imageEle.src = user.avatar_url;
+  nameEle.innerHTML = user.name;
+  bioEle.innerHTML = user.bio;
+  followersEle.innerHTML = `<div>${user.followers}</div><div>Followers</div>`;
+  followingEle.innerHTML = `<div>${user.following}</div><div>Following</div>`;
+  locationEle.innerHTML =
+    `<span class="material-symbols-outlined">
+  location_on
+  </span> ` + user.location;
+  reposEle.innerHTML = `${user.public_repos} Repositories`;
+  linkEle.href = user.html_url;
+  document.querySelector(".card").style = "display: flex";
+}
