@@ -1,6 +1,12 @@
 const URL = "https://api.github.com/users/";
 
 const inputEle = document.getElementById("user-input");
+inputEle.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    getUser();
+  }
+});
 const searchBtnEle = document.getElementById("btn-search");
 searchBtnEle.addEventListener("click", getUser);
 
