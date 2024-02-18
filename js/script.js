@@ -18,6 +18,7 @@ const followingEle = document.getElementById("following");
 const locationEle = document.querySelector(".location");
 const reposEle = document.querySelector(".repos");
 const linkEle = document.querySelector(".link");
+const cardEle = document.querySelector(".card");
 
 function getUser() {
   if (inputEle.value !== "") {
@@ -35,6 +36,7 @@ function getUser() {
           createCard(values);
         }
       });
+      inputEle.value = "";
   } else {
     alert("Please, insert a user name");
   }
@@ -52,5 +54,5 @@ function createCard(user) {
   </span> ` + user.location;
   reposEle.innerHTML = `${user.public_repos} Repositories`;
   linkEle.href = user.html_url;
-  document.querySelector(".card").style = "display: flex";
+  cardEle.style = "display: flex";
 }
