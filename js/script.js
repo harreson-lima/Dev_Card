@@ -31,14 +31,34 @@ function getUser() {
       .then((values) => {
         if (values.message === "Not Found") {
           document.querySelector(".card").style = "display: none";
-          alert("Please, insert a valid user name");
+          Toastify({
+            text: "Please, insert a valid user name",
+            duration: 3000,
+            close: true,
+            gravity: "top", 
+            position: "right", 
+            stopOnFocus: true, 
+            style: {
+              background: "linear-gradient(to right, #2296b3,#15aacf)",
+            }
+          }).showToast();
         } else {
           createCard(values);
         }
       });
-      inputEle.value = "";
+    inputEle.value = "";
   } else {
-    alert("Please, insert a user name");
+    Toastify({
+      text: "Please, insert a user name",
+      duration: 3000,
+      close: true,
+      gravity: "top", 
+      position: "right", 
+      stopOnFocus: true, 
+      style: {
+        background: "linear-gradient(to right, #e32424, #ff6347)",
+      }
+    }).showToast();
   }
 }
 
