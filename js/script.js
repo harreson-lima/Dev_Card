@@ -7,6 +7,7 @@ inputEle.addEventListener("keydown", (event) => {
     getUser();
   }
 });
+
 const searchBtnEle = document.getElementById("btn-search");
 searchBtnEle.addEventListener("click", getUser);
 
@@ -30,7 +31,6 @@ function getUser() {
       .then((data) => data.json())
       .then((values) => {
         if (values.message === "Not Found") {
-          document.querySelector(".card").style = "display: none";
           Toastify({
             text: "Please, insert a valid user name",
             duration: 3000,
@@ -43,7 +43,10 @@ function getUser() {
             }
           }).showToast();
         } else {
-          createCard(values);
+          cardEle.style.display = "none";
+          setTimeout(() => {
+            createCard(values);
+          }, 50)
         }
       });
     inputEle.value = "";
@@ -74,5 +77,5 @@ function createCard(user) {
   </span> ` + user.location;
   reposEle.innerHTML = `${user.public_repos} Repositories`;
   linkEle.href = user.html_url;
-  cardEle.style = "display: flex";
+  cardEle.style.display = "flex";
 }
